@@ -1,0 +1,28 @@
+/*
+.col-xs-12{
+	margin: 0 auto;
+	align-content: center;
+	justify-content: center;
+	align-self: center;
+}*/
+
+
+img.logo{
+
+	height: 250px;
+	width: 250px;
+	margin-top: 50px;
+	margin-left: 525px;}
+
+p.acc{
+	margin-top: -30px;
+	margin-left: 550px;
+	font-family: Arial;
+	letter-spacing: 2pt;
+	font-size: 16pt;
+	color: #999999;
+	font-weight: all;}
+
+
+
+

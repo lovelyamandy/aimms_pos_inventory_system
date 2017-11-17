@@ -1,0 +1,151 @@
+img.logo{
+	margin-top: -40px;
+	height: 200px;
+	width: 400px;
+}
+
+div.search-div{
+	width: 1000px;
+	height: 400px;
+	margin-left: 850px;
+	margin-top: -130px;
+}
+
+p.signout{
+	color: White;
+	font-size: 12pt;
+	margin-top: -30px;
+	margin-left: -80px;
+}
+
+p.order{
+	font-size: 14pt;
+	letter-spacing: 0.6pt;
+	color: White;
+	margin-left: -450px;
+	margin-top: -20px;
+}
+
+input.search{
+	padding-left: 20px;
+	width: 300px;
+	height: 50px;
+	border-radius: 50px;
+}
+
+div.receipt{
+	margin-left: 20px;
+	margin-top: -250px;
+	width: 450px;
+	height: 800px;
+	background-color: White;
+}
+
+p.descrip{
+	margin-left: 115px;
+	padding-top: 10px;
+	font-family: Ebrima;
+	font-size: 12pt;
+}
+
+p.pname {
+	margin-left: 30px;
+	padding-top: 50px;
+	font-family: Ebrima;
+	font-size: 12pt;
+}
+
+p.pquant {
+
+	top: 10px;
+	margin-left: 40px;
+	font-family: Ebrima;
+	font-size: 12pt;
+}
+
+p.peach {
+	font-family: Ebrima;
+	font-size: 12pt;
+}
+
+p.ptotal{
+		font-family: Ebrima;
+	font-size: 12pt;
+}
+div.panel{
+	margin-left: 470px;
+	margin-top: -800px;
+	width: 780px;
+	height: 800px;
+	background-color: #E88074;
+}
+
+
+div.yehet
+{
+	border-top: solid;
+	border-width: 5pt;
+	border-top-color: gray;
+
+}
+
+div.prod
+{
+	
+	color: white;
+	border-bottom: solid;
+	border-width: 5pt;
+
+}
+
+p.pproducts 
+{
+	color:white;
+	text-align: center;
+	padding-top: 30px;
+	font-family: Ebrima;
+	font-size: 30pt;
+}
+
+button.category{
+	margin-top: 80px;
+	color: White;
+	font-family: Arial;
+	font-size: 12pt;
+	background-color: #CB4335;
+	border-style: none;
+	height: 60px;
+	width: 100px;
+}
+button.category:hover{
+	background-color:#E88074; 
+}
+
+button.butt{
+	margin-top: 10px;
+	color: White;
+	font-family: Arial;
+	font-size: 12pt;
+	background-color: #CB4335;
+	border-style: none;
+	height: 60px;
+	width: 100px;
+}
+button.butt:hover{
+	background-color:#E88074; 
+}
+
+button.checkout{
+	width: 80px;
+	height: 40px;
+	margin-left: 90px;
+	margin-top: 500px;
+}
+
+button.done{
+	width: 80px;
+	height: 40px;
+	margin-left: 100px;
+	margin-top: 500px ;
+}
+
