@@ -6,6 +6,22 @@
 	align-self: center;
 }*/
 
+.StoreName{
+	font-family: Arial;
+	font-size: 16pt;
+	text-align: center;
+	font-weight: bold;
+}
+
+.asd{
+	background-color: Red;
+}
+.form-group{
+
+	padding-top: 70px;
+}
+
+
 
 img.logo{
 
@@ -23,6 +39,16 @@ p.acc{
 	color: #999999;
 	font-weight: all;}
 
+.receipt{
+	background-color: White;
+}
 
 
+p.order{
+	text-align: center;
+	padding-top: 70px;
+	font-size: 16pt;
+	color: White;
+	
+}
 
