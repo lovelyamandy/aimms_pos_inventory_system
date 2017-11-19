@@ -27,17 +27,36 @@
 
 		  		 	<div class="row">
 		  		 		<div class="receipt col-lg-5">
-
-		  		 			<p class="StoreName">Aimm's Meat and More</p>
+		  		 			<div class="row"><p class="StoreName">Aimm's Meat and More</p>
 		  		 			<br>
-		  		 			<p class="StoreName" ">-------------------------------------------------------------</p><br>
-		  		 			<tr style="padding: 50px">
-		  		 				<th>Name</th>
-		  		 				<th class="field">Qty</th>
-		  		 				<th class="field">Each</th>
-		  		 				<th class="field">Total</th>
-		  		 			</tr>
-		  		 			<p class="field"></p>
+		  		 			<p class="Separator">-------------------------------------------------------------</p><br></div>
+		  		 			
+		  		 			<div class="col-xs-12"><table>
+		  		 				<tr>Name</tr>
+		  		 				<tr>Qty</tr>
+		  		 				<tr>Each</tr>
+		  		 				<tr>Total</tr>
+		  		 			</table>
+		  		 				
+		  		 			</div>
+		  		 			
+		  		 			<div class="row" style="text-align: center;">
+		  		 				<input type="button" class="BtnRcpt" name="BtnCkOut" value="Check Out" onclick="">
+		  		 				<input type="button" class="BtnRcpt" name="BtnDone" value="Done" onclick="">
+		  		 			</div>
+		  		 			
+		  		 		</div>
+		  		 		<div class="products col-lg-7">
+		  		 			<p class="prod">PRODUCTS</p>
+			  		 		<input type="button" name="BtnProd" value="Category" class="BtnProd"><br>
+			  				<input type="button" name="BtnProd" value="Fruits" class="BtnProd"><br>
+			  				<input type="button" name="BtnProd" value="Vegetables" class="BtnProd"><br>
+		  		 			<input type="button" name="BtnProd" value="Meats" class="BtnProd"><br>
+		  		 			<input type="button" name="BtnProd" value="Canned Goods" class="BtnProd"><br>
+		  		 			<input type="button" name="BtnProd" value="Dairy" class="BtnProd"><br>
+		  		 			<input type="button" name="BtnProd" value="Spices" class="BtnProd"><br>
+		  		 			<input type="button" name="BtnProd" value="Herbs and Spices" class="BtnProd"><br>
+
 		  		 		</div>
 		  		 	</div>
 		  		</div>
