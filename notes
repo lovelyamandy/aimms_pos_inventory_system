@@ -1,0 +1,5 @@
+order line
+	-cost price from oldest stock
+product
+	-cost price from oldest stock
+	*average cost price - total cost price/total stock number

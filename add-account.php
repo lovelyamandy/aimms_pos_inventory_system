@@ -2,7 +2,13 @@
 // Include config file
 require_once 'config.php';
 require_once 'session.php';
+session_start();
 
+// If session variable is not set it will redirect to login page
+if(isset($_SESSION['username']) || !empty($_SESSION['username'])){
+  header("location: index.php");
+  exit;
+}
 
 // Define variables and initialize with empty values
 $username = $password = $confirm_password = $account_type = $first_name = $last_name = $address = $age = $gender = "";
@@ -123,9 +129,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     if(mysqli_stmt_execute($stmt)){
                         $user_id = mysqli_insert_id($link);
                         $sqlCashier = "INSERT INTO cashier (user_id_fk, name, address, age, gender) VALUES (" . $user_id . ", '" . $first_name . " " . $last_name . "', '" . $address . "', " . $age . ", '" . $gender . "')";
-                        echo $sqlCashier;
                         if(mysqli_query($link, $sqlCashier)){
-                            header("location: index.php");
+                            header("location: login.php");
                         } else {
                             echo "Error in inserting cashier";
                         }
@@ -162,87 +167,85 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 }
 ?>
 
-<html>
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>Aimm's POS and Inventory System</title>
-    <link href="style/admin.css" type="text/css" rel="stylesheet" />
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <meta charset="UTF-8">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
+    <!-- <link rel="stylesheet" href="/css/style.css"> -->
+    <style type="text/css">
+        body{ font: 14px sans-serif; }
+        .wrapper{ width: 350px; padding: 20px; }
+    </style>
 </head>
-
 <body>
-    <div class="col-xs-12">
-        <div class="menu-cont">
-            <img src="images/adminlogo.png" class="admin_logo">
-            <p class="admin">ADMIN</p> 
-            <div class="menu-div">
-                <input type="button" class="view_inv" value="view inventory" onclick=""></input>
-                <input type="button" class="report" value="Report" onclick=""></input>
-                <input type="button" class="report" value="Accounts" onclick=""></input>
-                <input type="button" class="report" value="Log-out" onclick=""></input>
-
+    <div class="wrapper">
+        <h2>Sign Up</h2>
+        <p>Please fill this form to create an account.</p>
+        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" id="user-info">
+            <div class="form-group <?php echo (!empty($account_type_err)) ? 'has-error' : ''; ?>">
+                <label>Account type:<sup>*</sup></label>
+                <select class="form-control" name="account_type" id="account-type">
+                    <option disabled selected>Select</option>
+                    <option value="admin">Admin</option>
+                    <option value="cashier">Cashier</option>
+                </select>
+                <span class="help-block"><?php echo $account_type_err; ?></span>
             </div>
-        </div> 
-        <div class="panel_add_acc">
-            <img src="images/download.png" class="avatar">
-
-            <div class="acc_type col-md-5">
-                <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" id="user-info">
-                    <div class="form-group <?php echo (!empty($account_type_err)) ? 'has-error' : ''; ?>">
-                        <select class="form-control" name="account_type" id="account-type">
-                            <option disabled selected>Account type</option>
-                            <option value="admin">Admin</option>
-                            <option value="cashier">Cashier</option>
-                        </select>
-                        <span class="help-block"><?php echo $account_type_err; ?></span>
-                    </div>
-                    <div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
-                        <input type="text" name="username" placeholder="Username" class="form-control" value="<?php echo $username; ?>">
-                        <span class="help-block"><?php echo $username_err; ?></span>
-                    </div>
-                    <div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
-                        <input type="password" name="password" placeholder="Password" class="form-control" value="<?php echo $password; ?>">
-                        <span class="help-block"><?php echo $password_err; ?></span>
-                    </div>
-                    <div class="form-group <?php echo (!empty($confirm_password_err)) ? 'has-error' : ''; ?>">
-                        <input type="password" name="confirm_password" placeholder="Confirm Password" class="form-control" value="<?php echo $confirm_password; ?>">
-                        <span class="help-block"><?php echo $confirm_password_err; ?></span>
-                    </div>
-                    <div id="cashier-div">
-                        <div class="form-group <?php echo (!empty($first_name_err)) ? 'has-error' : ''; ?>">
-                            <input type="text" name="first_name" placeholder="Firstname" class="form-control cashier-info" value="<?php echo $first_name; ?>">
-                            <span class="help-block"><?php echo $first_name_err; ?></span>
-                        </div>
-                        <div class="form-group <?php echo (!empty($last_name_err)) ? 'has-error' : ''; ?>">
-                            <input type="text" name="last_name" placeholder="Lastname" class="form-control cashier-info" value="<?php echo $last_name; ?>">
-                            <span class="help-block"><?php echo $last_name_err; ?></span>
-                        </div>
-                        <div class="form-group <?php echo (!empty($address_err)) ? 'has-error' : ''; ?>">
-                            <input type="text" name="address" placeholder="Address" class="form-control cashier-info" value="<?php echo $address; ?>">
-                            <span class="help-block"><?php echo $address_err; ?></span>
-                        </div>
-                        <div class="form-group form-inline">   
-                            <div class="form-group <?php echo (!empty($age_err)) ? 'has-error' : ''; ?>">
-                                <input type="number" name="age" placeholder="Age" class="form-control cashier-info" value="<?php echo $age; ?>">
-                                <span class="help-block"><?php echo $age_err; ?></span>
-                            </div>
-                            <div class="form-group <?php echo (!empty($account_type_err)) ? 'has-error' : ''; ?>">
-                                <select class="form-control cashier-info" name="gender">
-                                    <option disabled selected>Gender</option>
-                                    <option value="M">Male</option>
-                                    <option value="F">Female</option>
-                                </select>
-                                <span class="help-block"><?php echo $gender_err; ?></span>
-                            </div>
-                        </div>    
-                    </div>    
-                    <div class="form-group">
-                        <input type="submit" class="btn btn-primary" value="Submit">
-                        <input type="reset" class="btn btn-default" value="Reset">
-                    </div>
-                </form>
+            <div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
+                <label>Username:<sup>*</sup></label>
+                <input type="text" name="username" class="form-control" value="<?php echo $username; ?>">
+                <span class="help-block"><?php echo $username_err; ?></span>
             </div>
-        </div>
+            <div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
+                <label>Password:<sup>*</sup></label>
+                <input type="password" name="password" class="form-control" value="<?php echo $password; ?>">
+                <span class="help-block"><?php echo $password_err; ?></span>
+            </div>
+            <div class="form-group <?php echo (!empty($confirm_password_err)) ? 'has-error' : ''; ?>">
+                <label>Confirm Password:<sup>*</sup></label>
+                <input type="password" name="confirm_password" class="form-control" value="<?php echo $confirm_password; ?>">
+                <span class="help-block"><?php echo $confirm_password_err; ?></span>
+            </div>
+            <div id="cashier-div">
+                <div class="form-group <?php echo (!empty($first_name_err)) ? 'has-error' : ''; ?>">
+                    <label>First Name: <sup>*</sup></label>
+                    <input type="text" name="first_name" class="form-control cashier-info" value="<?php echo $first_name; ?>">
+                    <span class="help-block"><?php echo $first_name_err; ?></span>
+                </div>
+                <div class="form-group <?php echo (!empty($last_name_err)) ? 'has-error' : ''; ?>">
+                    <label>Last Name:<sup>*</sup></label>
+                    <input type="text" name="last_name" class="form-control cashier-info" value="<?php echo $last_name; ?>">
+                    <span class="help-block"><?php echo $last_name_err; ?></span>
+                </div>
+                <div class="form-group <?php echo (!empty($address_err)) ? 'has-error' : ''; ?>">
+                    <label>Address:<sup>*</sup></label>
+                    <input type="text" name="address" class="form-control cashier-info" value="<?php echo $address; ?>">
+                    <span class="help-block"><?php echo $address_err; ?></span>
+                </div>
+                <div class="form-group <?php echo (!empty($age_err)) ? 'has-error' : ''; ?>">
+                    <label>Age:<sup>*</sup></label>
+                    <input type="number" name="age" class="form-control cashier-info" value="<?php echo $age; ?>">
+                    <span class="help-block"><?php echo $age_err; ?></span>
+                </div>
+                <div class="form-group <?php echo (!empty($account_type_err)) ? 'has-error' : ''; ?>">
+                    <label>Gender:<sup>*</sup></label>
+                    <select class="form-control cashier-info" name="gender">
+                        <option disabled selected>Select</option>
+                        <option value="M">Male</option>
+                        <option value="F">Female</option>
+                    </select>
+                    <span class="help-block"><?php echo $gender_err; ?></span>
+                </div>
+            </div>    
+            <div class="form-group">
+                <input type="submit" class="btn btn-primary" value="Submit">
+                <input type="reset" class="btn btn-default" value="Reset">
+            </div>
+
+            <p>Already have an account? <a href="login.php">Login here</a>.</p>
+        </form>
     </div>
 
     <script language="JavaScript">
@@ -260,13 +263,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         if (accountType.selectedIndex != 2) {
             for (var i = 0; i < cashierInfo.length; i++) { 
                 cashierInfo[i].disabled = true;
+                document.getElementById('cashier-div').style.display = "none";
             }
-            document.getElementById('cashier-div').style.display = "none";
         } else {
             for (var i = 0; i < cashierInfo.length; i++) { 
                 cashierInfo[i].disabled = false;
+                document.getElementById('cashier-div').style.display = "block";
             }
-            document.getElementById('cashier-div').style.display = "block";
         }
         console.log(accountType.selectedIndex);
     };
