@@ -7,4 +7,8 @@ if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
 	exit;
 }
 
+if ($_SESSION['usertype'] == 'admin') {
+	header("location: admin.php");
+}
+
 ?>

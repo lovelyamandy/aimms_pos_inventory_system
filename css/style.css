@@ -1,18 +1,11 @@
-
-.StoreName{
-	font-family: Arial;
-	font-size: 16pt;
+.CashTendered{
 	text-align: center;
-	font-weight: bold;
-}
-
-.Separator{
-	text-align: center;
-	font-weight: normal;
+	height: 40px;
+	width: 250px;
 }
 
 .asd{
-	background-color: #ED2939;
+	background-color: White;
 }
 
 p.order{
@@ -28,10 +21,6 @@ input.search{
 	width: 300px;
 	height: 50px;
 	border-radius: 50px;
-}
-.form-group{
-
-	padding-top: 70px;
 }
 
 img.logo{
@@ -51,6 +40,8 @@ p.acc{
 	font-weight: all;}
 
 .receipt{
+	border: solid 1px #B03A2E;
+	height: 600px;
 	background-color: White;
 }
 .products{
@@ -85,4 +76,175 @@ p.prod{
 	color: White;
 	
 }
+img.admin_logo{
+	width: 200px;
+	height:200px;
+
+}
+
+input.BtnAdmin{
+	border-style: none;
+	color: #17202A;
+	font-weight: bold;
+	background-color: #D0D3D4;
+	width: 120px;
+	height: 50px;
+}
+
+input.BtnAdmin:hover{
+	color: #D0D3D4;
+	background-color: Black;
+}
+
+div.content{
+	border: solid;
+	border-width: 25px;
+	border-color: Grey;
+
+}
+div.menu-div{
+	text-align: center;
+	border-top: solid;	
+	border-top-color: Red;
+	border-width: 3px;
+
+}
+
+input.view_inv{
+
+	width: 185pt;
+	height: 30pt;
+	border-style: none;
+	margin-top: 50px;
+	background-color: Red;
+	color: White;
+	font-weight: bold;
+	font-size: 12pt;
+	letter-spacing: 0.5pt;
+	border-radius: 3px;
+}
+
+input.view_inv:hover{
+	background-color: Salmon;
+	color: White;
+}
+
+input.report{
+	margin-top: 20px;
+	width: 185pt;
+	height: 30pt;
+	border-style: none;
+	background-color: Red;
+	color: White;
+	font-weight: bold;
+	font-size: 12pt;
+	letter-spacing: 0.5pt;
+	border-radius: 3px;
+}
+
+input.report:hover{
+	background-color: Salmon;
+	color: White;
+}
+
+
+div.acc_type{
+	padding: inherit;
+	margin-top: 50px;
+	margin-left: 300px;
+}
+select.acc_type{
+	border-color: Grey;
+	border-style: solid;
+	border-width: 1pt;
+	width: 350px;
+	height: 50px;
+	font-size: 12pt;
+	border-radius: 3px;
+}
+input.inp{
+	margin-top: 10px;
+	width: 350px;
+	height: 50px;
+	font-size: 12pt;
+	border-radius: 3px;
+	border-style: solid;
+	border-width: 1pt;
+	border-color: Grey;
+}
+
+input.age{
+	border-style: solid;
+	border-width: 1pt;	
+	margin-top: 10px;
+	width: 50px;
+	height: 60px;
+	font-size: 12pt;
+	border-radius: 3px;
+	border-color: Grey;
+
+}
+select.gender{
+	
+	margin-top: -75px;
+	margin-left: 65px;
+	width: 290px;
+	height: 55px;
+	font-size: 12pt;
+	border-radius: 3px;
+	border-style: solid;
+	border-width: 1pt;
+	border-color: Grey;
+}
+
+input.add_acc{
+	background-color: Grey;
+	color: White;
+	margin-top: 60px;
+	margin-left: 500px;
+	border-radius: 3px;
+	border: none;
+	width: 150px;
+	height: 35px;
+}
+input.add_acc:hover{
+	background-color: Black;
+	color: Grey;
+}
+/* Modal css*/
+/*	.modal {
+		    display: none; /* Hidden by default */
+		    position: fixed; /* Stay in place */
+		    z-index: 1; /* Sit on top */
+		    padding-top: 100px; /* Location of the box */
+		    left: 0;
+		    top: 0;
+		    width: 100%; /* Full width */
+		    height: 100%; /* Full height */
+		    overflow: auto; /* Enable scroll if needed */
+		    background-color: rgb(0,0,0); /* Fallback color */
+		    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+		} 
+
+		/* Modal Content */
+		.modal-content {
+			padding: 10px;
+			margin-left: 100px;
+		    background-color: White;
+		    width: 450px;
+		    height: 250px;
+		    border: 1px solid Grey;
+		    text-align: center;
+		    font-size: 16pt;
+		    font-weight: bold;
+		   
+		}
+
+		/*ADD ACCOUNT*/
+
+	div.div_body{
+
+			text-align: center;
+
+		}
 

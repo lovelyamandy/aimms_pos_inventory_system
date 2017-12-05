@@ -1,0 +1,10 @@
+add product process
+	- insert into product name,usp,ucp,qut,qoh,rp,categoryid
+	- get product_id
+	- insert into stock_in product_id,qoh,ucp,ucp*qoh 
+
+
+
+
+
+	delete!!!!
