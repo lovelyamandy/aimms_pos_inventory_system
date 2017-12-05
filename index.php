@@ -6,12 +6,16 @@ session_start();
 // If session variable is not set it will redirect to login page
 
 if(isset($_SESSION['username']) || !empty($_SESSION['username'])){
+<<<<<<< HEAD
   if ($_SESSION['usertype'] == 'admin') {
       header("location: admin.php");
   } else if ($_SESSION['usertype'] == 'cashier') {
       header("location: cashier.php");
   } else
     echo "Unknown user Type";
+=======
+  header("location: admin.php");
+>>>>>>> c8ba2eec2bd2d775401be8fb7782febb95111892
   exit;
 }
 

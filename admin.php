@@ -1,13 +1,177 @@
 <?php
 // Include config file
+<<<<<<< HEAD
 //require_once 'config.php';
 require_once 'session-admin.php';
+=======
+require_once 'config.php';
+require_once 'session.php';
+
+
+// Define variables and initialize with empty values
+$username = $password = $confirm_password = $account_type = $first_name = $last_name = $address = $age = $gender = "";
+$username_err = $password_err = $confirm_password_err = $account_type_err = $first_name_err = $last_name_err = $address_err = $age_err = $gender_err = "";
+
+// Processing form data when form is submitted
+if($_SERVER["REQUEST_METHOD"] == "POST"){
+    
+    if(empty(trim($_POST["account_type"]))){
+        $account_type_err = "Please select";
+    } else{
+        $account_type = trim($_POST['account_type']);
+        if ($account_type == 'cashier') {
+            if (empty(trim($_POST["first_name"]))) {
+                $first_name_err = "Please enter a firstname";
+            } else {
+                $first_name = trim($_POST["first_name"]);
+            }
+
+            if (empty(trim($_POST["last_name"]))) {
+                $last_name_err = "Please enter a lastname";
+            } else {
+                $last_name = trim($_POST["last_name"]);
+            }
+
+            if (empty(trim($_POST["address"]))) {
+                $address_err = "Please enter a address";
+            } else {
+                $address = trim($_POST["address"]);
+            }
+
+            if (empty(trim($_POST["age"]))) {
+                $age_err = "Please enter a age";
+            } else {
+                $age = trim($_POST["age"]);
+            }
+
+            if (empty(trim($_POST["gender"]))) {
+                $gender_err = "Please select a gender";
+            } else {
+                $gender = trim($_POST["gender"]);
+            }
+        }
+    }
+    
+    // Validate username
+    if(empty(trim($_POST["username"]))){
+        $username_err = "Please enter a username.";
+    } else{
+        // Prepare a select statement
+        $sql = "SELECT id FROM users WHERE username = ?";
+
+        if($stmt = mysqli_prepare($link, $sql)){
+            // Bind variables to the prepared statement as parameters
+            mysqli_stmt_bind_param($stmt, "s", $param_username);
+
+            // Set parameters
+            $param_username = trim($_POST["username"]);
+
+            // Attempt to execute the prepared statement
+            if(mysqli_stmt_execute($stmt)){
+                /* store result */
+                mysqli_stmt_store_result($stmt);
+
+                if(mysqli_stmt_num_rows($stmt) == 1){
+                    $username_err = "This username is already taken.";
+                } else{
+                    $username = trim($_POST["username"]);
+                }
+            } else{
+                echo "Oops! Something went wrong. Please try again later.";
+            }
+        }
+
+        // Close statement
+        mysqli_stmt_close($stmt);
+    }
+
+    // Validate password
+    if(empty(trim($_POST['password']))){
+        $password_err = "Please enter a password.";
+    } elseif(strlen(trim($_POST['password'])) < 6){
+        $password_err = "Password must have atleast 6 characters.";
+    } else{
+        $password = trim($_POST['password']);
+    }
+
+    // Validate confirm password
+    if(empty(trim($_POST["confirm_password"]))){
+        $confirm_password_err = 'Please confirm password.';
+    } else{
+        $confirm_password = trim($_POST['confirm_password']);
+        if($password != $confirm_password){
+            $confirm_password_err = 'Password did not match.';
+        }
+    }
+
+    // Check input errors before inserting in database
+    if(empty($username_err) && empty($password_err) && empty($confirm_password_err) && empty($account_type_err)){
+
+        // Prepare an insert statement
+        $sqlUser = "INSERT INTO users (username, password, account_type) VALUES (?, ?, ?)";
+        $sqlCashier = "INSERT INTO cashier (user_id_fk, name, address, age, gender) VALUES (?, ?, ?)";
+       
+        if ($account_type == "cashier") {
+            if (empty($first_name_err) && empty($last_name_err) && empty($address_err) && empty($age_err) && empty($gender_err)) {
+                if($stmt = mysqli_prepare($link, $sqlUser)){
+
+                    // Bind variables to the prepared statement as parameters
+                    mysqli_stmt_bind_param($stmt, "sss", $param_username, $param_password, $param_account_type);
+                    
+                    // Set parameters
+                    $param_account_type = $account_type;
+                    $param_username = $username;
+                    $param_password = password_hash($password, PASSWORD_DEFAULT); // Creates a password hash
+
+                    // Attempt to execute the prepared statement
+                    if(mysqli_stmt_execute($stmt)){
+                        $user_id = mysqli_insert_id($link);
+                        $sqlCashier = "INSERT INTO cashier (user_id_fk, name, address, age, gender) VALUES (" . $user_id . ", '" . $first_name . " " . $last_name . "', '" . $address . "', " . $age . ", '" . $gender . "')";
+                        echo $sqlCashier;
+                        if(mysqli_query($link, $sqlCashier)){
+                            header("location: index.php");
+                        } else {
+                            echo "Error in inserting cashier";
+                        }
+                    } else{
+                        echo "Something went wrong. Please try again later.";
+                    }
+                }
+            }
+        } else {
+            if($stmt = mysqli_prepare($link, $sqlUser)){
+                // Bind variables to the prepared statement as parameters
+                mysqli_stmt_bind_param($stmt, "sss", $param_username, $param_password, $param_account_type);
+    
+                // Set parameters
+                $param_account_type = $account_type;
+                $param_username = $username;
+                $param_password = password_hash($password, PASSWORD_DEFAULT); // Creates a password hash
+    
+                // Attempt to execute the prepared statement
+                if(mysqli_stmt_execute($stmt)){
+                    // Redirect to login page
+                    header("location: login.php");
+                } else{
+                    echo "Something went wrong. Please try again later.";
+                }
+            }
+        }
+        // Close statement
+        mysqli_stmt_close($stmt);
+    }
+
+    // Close connection
+    mysqli_close($link);
+}
+>>>>>>> c8ba2eec2bd2d775401be8fb7782febb95111892
 ?>
 
 <html>
 
 <head>
     <title>Aimm's POS and Inventory System</title>
+<<<<<<< HEAD
     <script src="lib/jquery/jquery-3.2.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
     <script src="lib/bootstrap/js/bootstrap.min.js"></script>
@@ -28,6 +192,10 @@ require_once 'session-admin.php';
       color:#ccc;
   }
 </style>
+=======
+    <link href="style/admin.css" type="text/css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+>>>>>>> c8ba2eec2bd2d775401be8fb7782febb95111892
 </head>
 
 <body>
